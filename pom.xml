@@ -26,11 +26,13 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.5.2</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>pl.pragmatists</groupId>
@@ -42,11 +44,13 @@
             <groupId>com.pholser</groupId>
             <artifactId>junit-quickcheck-core</artifactId>
             <version>0.6.1</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.pholser</groupId>
             <artifactId>junit-quickcheck-generators</artifactId>
             <version>0.6.1</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
@@ -58,5 +62,17 @@
 <!--            <artifactId>finance_api_sample</artifactId>-->
 <!--            <version>1.0-SNAPSHOT</version>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>6.6.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>6.6.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
