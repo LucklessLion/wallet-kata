@@ -5,8 +5,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import wallet.domain.ExchangeRateService;
+import wallet.domain.GlobalEvaluator;
 import wallet.domain.StockEvaluator;
-import wallet.domain.WalletEvaluator;
+//import wallet.domain.WalletEvaluator;
 import wallet.model.Stock;
 import wallet.model.StockType;
 import wallet.model.Wallet;
@@ -78,8 +79,10 @@ public class StepDefinitions {
         }
       }
     };
-    WalletEvaluator valuator = new WalletEvaluator(service);
-    Assert.assertEquals(quantity, valuator.evaluate(wallet, this.type), Double.MIN_VALUE);
+    GlobalEvaluator evaluator = new GlobalEvaluator(service, this.type);
+    Stock s = evaluator.evaluateWallet(wallet);
+    Assert.assertNotNull(s);
+    Assert.assertEquals(quantity, s.getQuantity(), Double.MIN_VALUE);
   }
 
 }

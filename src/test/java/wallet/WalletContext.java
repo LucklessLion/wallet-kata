@@ -1,14 +1,10 @@
 package wallet;
 
 import org.junit.Assert;
-import wallet.domain.ExchangeRateService;
-import wallet.domain.WalletEvaluator;
+import wallet.domain.GlobalEvaluator;
 import wallet.model.Stock;
 import wallet.model.StockType;
 import wallet.model.Wallet;
-
-import java.util.HashMap;
-import java.util.Map;
 
 class WalletContext extends Context {
   private Wallet wallet;
@@ -35,8 +31,7 @@ class WalletContext extends Context {
   }
 
   void then_I_get(double quantity){
-
-    WalletEvaluator evaluator = new WalletEvaluator(getExchangeRateService());
-    Assert.assertEquals(quantity, evaluator.evaluate(wallet, this.type), Double.MIN_VALUE);
+    GlobalEvaluator evaluator = new GlobalEvaluator(getExchangeRateService(), StockType.valueOf(this.type));
+    Assert.assertEquals(quantity, evaluator.evaluateWallet(wallet).getQuantity(), Double.MIN_VALUE);
   }
 }

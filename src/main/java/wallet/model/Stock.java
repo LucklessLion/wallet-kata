@@ -1,5 +1,7 @@
 package wallet.model;
 
+import wallet.domain.Evaluator;
+
 public class Stock {
 
   private final StockType type;
@@ -16,6 +18,10 @@ public class Stock {
 
   public double getQuantity() {
     return quantity;
+  }
+
+  Stock accept(Evaluator evaluator){
+    return evaluator.evaluateStock(this);
   }
 
 }
