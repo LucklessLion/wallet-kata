@@ -1,13 +1,12 @@
 package wallet;
 
 import org.junit.Assert;
-import wallet.domain.StockValuator;
+import wallet.domain.StockEvaluator;
 import wallet.model.Stock;
 
-class StockContext {
+class StockContext extends Context {
   private Stock stock;
   private String type;
-  private double rate;
 
   StockContext given_Stock_of(double quantity, String type){
     this.stock = new Stock(type, quantity);
@@ -18,13 +17,13 @@ class StockContext {
     return this;
   }
 
-  StockContext with_a_rate(double rate){
-    this.rate = rate;
+  StockContext with_a_rate(String exchange, double rate){
+    super.addAnExchangeRate(exchange, rate);
     return this;
   }
 
   void then_I_get(double quantity){
-    StockValuator valuator = new StockValuator((src, target) ->{ return rate;});
+    StockEvaluator valuator = new StockEvaluator(super.getExchangeRateService());
     Assert.assertEquals(quantity, valuator.evaluate(stock, this.type), Double.MIN_VALUE);
   }
 }

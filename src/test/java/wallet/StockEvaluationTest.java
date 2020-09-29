@@ -9,7 +9,7 @@ public class StockEvaluationTest {
     StockContext ctx = new StockContext();
     ctx.given_Stock_of(3, "Dollar")
         .when_I_evaluate_it_in("Euro")
-        .with_a_rate(2.0)
+        .with_a_rate("Dollar-Euro", 2.0)
         .then_I_get(6.0);
   }
 
@@ -18,7 +18,7 @@ public class StockEvaluationTest {
     StockContext ctx = new StockContext();
     ctx.given_Stock_of(15, "Dollar")
         .when_I_evaluate_it_in("Dollar")
-        .with_a_rate(1.0)
+        .with_a_rate("Dollar-Euro", 1.0)
         .then_I_get(15.0);
   }
 
