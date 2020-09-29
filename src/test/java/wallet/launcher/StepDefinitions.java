@@ -7,7 +7,6 @@ import org.junit.Assert;
 import wallet.domain.ExchangeRateService;
 import wallet.domain.GlobalEvaluator;
 import wallet.domain.StockEvaluator;
-//import wallet.domain.WalletEvaluator;
 import wallet.model.Stock;
 import wallet.model.StockType;
 import wallet.model.Wallet;

@@ -7,6 +7,7 @@ import org.junit.Assert;
 import wallet.domain.ExchangeRateService;
 import wallet.domain.StockEvaluator;
 import wallet.model.Stock;
+import wallet.model.StockType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class StepDefinitions {
 
   @Given("a stock of {double} {string}")
   public void a_stock_of(Double quantity, String type) {
-    this.stock = new Stock(type, quantity);
+    this.stock = new Stock(StockType.valueOf(type), quantity);
   }
 
   @Given("a exchange rate {string} at {double}")
@@ -36,8 +37,8 @@ public class StepDefinitions {
   public void i_get(Double quantity) {
     ExchangeRateService service = new ExchangeRateService() {
       @Override
-      public double getCurrentRate(String sourceType, String targetType) {
-        String exchange = sourceType + "-" + targetType;
+      public double getCurrentRate(StockType source, StockType target) {
+        String exchange = source + "-" + target;
         if (rates.containsKey(exchange)) {
           return rates.get(exchange);
         }
@@ -47,7 +48,7 @@ public class StepDefinitions {
       }
     };
     StockEvaluator valuator = new StockEvaluator(service);
-    Assert.assertEquals(quantity, valuator.evaluate(stock, this.type), Double.MIN_VALUE);
+    Assert.assertEquals(quantity, valuator.evaluate(stock, StockType.valueOf(this.type)), Double.MIN_VALUE);
   }
 
 }
