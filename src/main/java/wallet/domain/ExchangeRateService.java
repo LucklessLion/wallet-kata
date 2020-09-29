@@ -1,6 +1,8 @@
 package wallet.domain;
 
+import wallet.model.StockType;
+
 public interface ExchangeRateService {
 
-  double getCurrentRate(String sourceType, String targetType);
+  double getCurrentRate(StockType source, StockType target);
 }

@@ -5,18 +5,19 @@ import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import wallet.domain.StockEvaluator;
 import wallet.model.Stock;
+import wallet.model.StockType;
 
 class StockContext extends Context {
   private Stock stock;
-  private String type;
+  private StockType target;
 
   StockContext given_Stock_of(double quantity, String type){
-    this.stock = new Stock(type, quantity);
+    this.stock = new Stock(StockType.valueOf(type), quantity);
     return this;
   }
 
   StockContext when_I_evaluate_it_in(String type){
-    this.type = type;
+    this.target = StockType.valueOf(type);
     return this;
   }
 
@@ -29,6 +30,6 @@ class StockContext extends Context {
   @Then("I get {double}")
   void then_I_get(double quantity){
     StockEvaluator valuator = new StockEvaluator(super.getExchangeRateService());
-    Assert.assertEquals(quantity, valuator.evaluate(stock, this.type), Double.MIN_VALUE);
+    Assert.assertEquals(quantity, valuator.evaluate(stock, this.target), Double.MIN_VALUE);
   }
 }

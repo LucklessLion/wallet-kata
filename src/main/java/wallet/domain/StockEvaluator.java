@@ -1,6 +1,7 @@
 package wallet.domain;
 
 import wallet.model.Stock;
+import wallet.model.StockType;
 
 public class StockEvaluator {
 
@@ -10,7 +11,7 @@ public class StockEvaluator {
     this.rateService = exchangeRateService;
   }
 
-  public double evaluate(Stock stock, String type){
+  public double evaluate(Stock stock, StockType type){
     double rate = rateService.getCurrentRate(stock.getType(), type);
     return stock.getQuantity() * rate;
   }

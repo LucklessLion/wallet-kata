@@ -1,5 +1,6 @@
 package wallet.domain;
 
+import wallet.model.StockType;
 import wallet.model.Wallet;
 
 public class WalletEvaluator {
@@ -12,10 +13,11 @@ public class WalletEvaluator {
   }
 
   public double evaluate(Wallet wallet, String type){
+    StockType stockType = StockType.valueOf(type);
     return wallet
             .getStocks()
             .stream()
-            .mapToDouble(stock -> this.evaluator.evaluate(stock, type)).sum();
+            .mapToDouble(stock -> this.evaluator.evaluate(stock, stockType)).sum();
   }
 
 }

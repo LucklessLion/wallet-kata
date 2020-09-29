@@ -1,6 +1,7 @@
 package wallet;
 
 import wallet.domain.ExchangeRateService;
+import wallet.model.StockType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,8 +22,8 @@ public class Context {
   protected ExchangeRateService getExchangeRateService(){
     return new ExchangeRateService() {
       @Override
-      public double getCurrentRate(String sourceType, String targetType) {
-        String exchange = sourceType + "-" + targetType;
+      public double getCurrentRate(StockType source, StockType target) {
+        String exchange = source.name() + "-" + target.name();
         if (rates.containsKey(exchange)) {
           return rates.get(exchange);
         }

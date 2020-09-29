@@ -2,15 +2,15 @@ package wallet.model;
 
 public class Stock {
 
-  private final String type;
+  private final StockType type;
   private final double quantity;
 
-  public Stock(String type, double quantity) {
+  public Stock(StockType type, double quantity) {
     this.type = type;
     this.quantity = quantity;
   }
 
-  public String getType() {
+  public StockType getType() {
     return type;
   }
 

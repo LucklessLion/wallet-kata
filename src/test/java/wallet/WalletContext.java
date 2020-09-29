@@ -4,6 +4,7 @@ import org.junit.Assert;
 import wallet.domain.ExchangeRateService;
 import wallet.domain.WalletEvaluator;
 import wallet.model.Stock;
+import wallet.model.StockType;
 import wallet.model.Wallet;
 
 import java.util.HashMap;
@@ -24,7 +25,7 @@ class WalletContext extends Context {
   }
 
   WalletContext with_a_stock(double quantity, String type){
-    this.wallet.add(new Stock(type, quantity));
+    this.wallet.add(new Stock(StockType.valueOf(type), quantity));
     return this;
   }
 
