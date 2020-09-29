@@ -54,9 +54,13 @@ public class StepDefinitions {
     Assert.assertEquals(quantity, valuator.evaluate(stock, this.type), Double.MIN_VALUE);
   }
 
-  @Given("a wallet containing a stock of {double} {string}")
-  public void a_wallet_containing_a_stock_of(Double quantity, String type) {
+  @Given("an empty wallet")
+  public void an_empty_wallet() {
     this.wallet = new Wallet();
+  }
+
+  @Given("I add a stock of {double} {string}")
+  public void i_add_a_stock_of(Double quantity, String type) {
     this.wallet.add(new Stock(StockType.valueOf(type), quantity));
   }
 
@@ -75,7 +79,7 @@ public class StepDefinitions {
       }
     };
     WalletEvaluator valuator = new WalletEvaluator(service);
-    Assert.assertEquals(quantity, valuator.evaluate(wallet, this.type.name()), Double.MIN_VALUE);
+    Assert.assertEquals(quantity, valuator.evaluate(wallet, this.type), Double.MIN_VALUE);
   }
 
 }

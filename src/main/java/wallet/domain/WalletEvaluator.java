@@ -12,12 +12,11 @@ public class WalletEvaluator {
     this.evaluator = new StockEvaluator(exchangeRateService);
   }
 
-  public double evaluate(Wallet wallet, String type){
-    StockType stockType = StockType.valueOf(type);
+  public double evaluate(Wallet wallet, StockType type){
     return wallet
             .getStocks()
             .stream()
-            .mapToDouble(stock -> this.evaluator.evaluate(stock, stockType)).sum();
+            .mapToDouble(stock -> this.evaluator.evaluate(stock, type)).sum();
   }
 
 }
